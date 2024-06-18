@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Définir le chemin du fichier sur le bureau
+filename="$HOME/Desktop/type42file"
+
+# Créer et écrire dans le fichier
+> "$filename"  # Crée un fichier vide
+
+# Ajouter 41 octets nuls
+for i in {1..41}; do
+    echo -ne '\x00' >> "$filename"
+done
+
+# Ajouter la chaîne "42" aux 42ème et 43ème octets
+echo -n "42" >> "$filename"
+
+# Vérifier le fichier
+echo "Fichier '$filename' créé avec succès."
+echo "Contenu hexadécimal du fichier:"
+hexdump -C "$filename"
+
